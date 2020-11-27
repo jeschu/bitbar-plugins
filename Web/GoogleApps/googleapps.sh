@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # <bitbar.title>Google Apps</bitbar.title>
-# <bitbar.version>v1.0.1</bitbar.version>
+# <bitbar.version>v1.1.0</bitbar.version>
 # <bitbar.author>Jens Schumacher</bitbar.author>
 # <bitbar.author.github>jeschu</bitbar.author.github>
 # <bitbar.desc>This plugin's dropdown menu will open Google Documents, Spreadsheets or Presentations in App-Mode of Chromium or Google Chrome.</bitbar.desc>
@@ -9,6 +9,9 @@
 # <bitbar.dependencies></bitbar.dependencies>
 
 function openBrowser() {
+  if [[ "$1" == "CALENDAR" ]]; then
+    open -a '/Applications/Google Kalender.app'; exit 0
+  fi
   if [[ -d /Applications/Chromium.app ]]; then
     BROWSER="/Applications/Chromium.app"
   elif [[ -d /Applications/Google\ Chrome.app ]]; then
@@ -52,12 +55,12 @@ function generateBitBar() {
     "https://docs.google.com/presentation" # Slides
     "https://keep.google.com"              # Notes
     "https://contacts.google.com/"         # Contacts
-    "https://calendar.google.com"          # Calendars
+    "CALENDAR"                             # "https://calendar.google.com"
     "https://photos.google.com/"           # Pictures
     "https://mail.google.com/"             # Mail
     "https://translate.google.de/"         # Translate
     "https://drive.google.com/"            # Drive
-    "https://maps.google.de/"               # Maps
+    "https://maps.google.de/"              # Maps
     "https://www.youtube.com"              # YouTube
   )
   declare -a images=(
